@@ -1,0 +1,62 @@
+﻿.carousel {
+    position: relative;
+    margin-top: 20px;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item {
+    position: relative;
+    display: none;
+    width: 100%;
+    -webkit-transition: opacity 0.6s ease-in-out;
+    transition: opacity 0.6s ease-in-out;
+}
+
+    .carousel-item.active {
+        display: block;
+    }
+
+.carousel-item-next,
+.carousel-item-prev {
+    position: absolute;
+    top: 0;
+}
+
+    .carousel-item-next.carousel-item-left,
+    .carousel-item-prev.carousel-item-right {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+@media (min-width: 768px) {
+    .carousel-item-next.carousel-item-left,
+    .carousel-item-prev.carousel-item-right {
+        -webkit-transform: translateX(25%);
+        transform: translateX(25%);
+    }
+}
+
+.carousel-item-next,
+.active.carousel-item-right {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+.carousel-item-prev,
+.active.carousel-item-left {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+@media (min-width: 768px) {
+    .carousel-item-next,
+    .carousel-item-prev {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Be.Logs>
+@{
+    ViewData["Title"] = "Setting";
+    Layout = "~/Views/Shared/_Profile_Layout.cshtml";
+}<div style="text-align:center;">
+<h5>Current Ip:</h5>
+<div class="text-info">@ViewBag.Ip</div>
+</div>
+<section style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-10">
+
+                <div class="card">
+                    <div class="card-header p-3">
+                        <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>Setting</h5>
+                    </div>
+                    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: fit-content">
+                        <div style="height: 400px; overflow: auto;">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Ip</th>
+                                        <th scope="col">Logs</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var log in Model)
+                                    {
+                                        <tr class="fw-normal">
+                                            <td class="align-middle">
+                                                <span>@log.Ip</span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <h6 class="mb-0"><span class="badge bg-info">@log.Logdate</span></h6>
+                                            </td>
+                                        </tr>
+                                    }
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script>
+        $("#Setting").addClass('active').siblings('li').removeClass('active');
+    </script>
+}
+

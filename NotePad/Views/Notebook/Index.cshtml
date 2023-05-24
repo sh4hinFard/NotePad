@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Be.Notebook>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Profile_Layout.cshtml";
+}
+<div id="NoteModal" class="modal">
+    <div class="modal-content" style="width: fit-content;margin-left:20%;">
+        <span class="close">&times;</span>
+        <h2>Add Note</h2>
+        <form id="addNoteForm">
+            <label>Title</label>
+            <input required class="form-control" type="text" id="newNoteTitle" placeholder="Enter Title">
+            <label>Date</label>
+            <input required class="form-control" type="date" id="newNoteDate" placeholder="Enter Date">
+            <label>Image</label>                                    
+            <input required class="form-control" type="file" id="newNoteImage" placeholder="Enter Image">
+            <label>Detail</label>
+            <textarea class="form-control" type="text" id="newNoteDetail" placeholder="Enter Detail"></textarea>
+        <button class="btn btn-primary" id="saveNoteButton">Save</button>
+        </form>
+    </div>
+</div>
+<ul id="NoteList"></ul>
+<section style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-10">
+
+                <div class="card">
+                    <div class="card-header p-3">
+                        <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Notes</h5>
+                    </div>
+                    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+                        <div style="height: 400px; overflow: auto;">
+                            <table id="NoteTable" class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Detail</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var note in Model)
+                                    {
+                                        <tr class="fw-normal">
+                                            <th>
+                                                <img src="/Images/NotesAndTasks/@note.Image"
+                                                     class="shadow-1-strong rounded-circle" alt="avatar 1"
+                                                     style="width: 55px; height: auto;">
+                                                <span class="ms-2">@note.Title</span>
+                                            </th>
+                                            <td class="align-middle">
+                                                <span>@note.Date</span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <h6 class="mb-0"><span class="badge bg-danger">@note.Detail</span></h6>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a data-mdb-toggle="tooltip" href="/Notebook/Edit_Note/@note.NoteId" aria-label="Edit" data-mdb-original-title="Edit">
+                                                    <i class="fas fa-pencil-square-o text-success me-3"></i>
+                                                </a>
+                                                <a onclick="delet(this,@note.NoteId)" data-mdb-toggle="tooltip" href="#" title="Remove">
+                                                    <i class="fas fa-trash-alt text-danger"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;" class="card-footer text-end p-3">
+                        <button id="addNoteButton" class="btn btn-primary">Add Note</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $("#Notesection").addClass('active').siblings('li').removeClass('active');
+    </script>
+    <script src="~/js/NOTE.js"></script>
+}

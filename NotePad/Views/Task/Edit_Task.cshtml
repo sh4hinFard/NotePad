@@ -1,0 +1,26 @@
+﻿@model Be.Task_Todo
+@{
+    ViewData["Title"] = "Edit_Task";
+    Layout = "~/Views/Shared/_Profile_Layout.cshtml";
+}
+<h2 style="text-align:center;">Edit Task</h2>
+<form style="width: fit-content;margin: auto;" asp-action="Edit_Task" asp-controller="Task" method="post" enctype="multipart/form-data">
+    <label>Title</label>
+    <input required value="@Model.Title" class="form-control" name="Title" type="text" id="newNoteTitle" placeholder="Enter Title">
+    <label>Date</label>
+    <span class="text-info">@Model.Date</span>
+    <input required class="form-control" name="Date" type="date" id="newNoteDate" placeholder="Enter Date">
+    <label>Image</label>
+    <input required class="form-control" name="Image" value="@Model.Image" type="file" id="newNoteImage" placeholder="Enter Image">
+    <label>Detail</label>
+    <textarea class="form-control" name="Detail" type="text" id="newNoteDetail" placeholder="Enter Detail">@Model.Detail</textarea>
+    <input type="hidden" value="@Model.TaskId" name="Id" />
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+@section Scripts{
+    <script>
+        $("#TODOsection").addClass('active').siblings('li').removeClass('active');
+    </script>
+}
+
+
